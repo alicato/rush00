@@ -5,7 +5,9 @@
 #include "Missile.hpp"
 
 class Player : public Entity {
-
+	private:
+		void		addMissile(int x, int y);
+		double		weapon_bonus;
 
 	public:
 		Player(void);
@@ -16,6 +18,7 @@ class Player : public Entity {
 		void		display();
 		void		move(int c);
 		void		shoot();
+		void		addBonusTime();
 
 		Missile*	missile[MISS_NB];
 };

@@ -6,6 +6,7 @@ Player::Player(void) {
 	this->y = WIN_H - 3;
 	this->time = clock();
 	this->active = true;
+	this->weapon_bonus = 0;
 	for(int i = 0; i < MISS_NB; ++i)
 		this->missile[i] = NULL;
 	return;
@@ -56,17 +57,41 @@ void			Player::display() {
 	}
 }
 
-void		Player::shoot() {
+void		Player::addBonusTime()
+{
 	std::clock_t actual = clock();
-	double time = ((actual - this->shot) / (float)1000000) * 1000;
-	if (time > 200) {
-		for(int i = 0; i < MISS_NB; ++i)
+
+	if (weapon_bonus < actual)
+		weapon_bonus = actual + 5000000;
+	else
+		weapon_bonus += 1000;
+}
+
+void		Player::addMissile(int x, int y)
+{
+	for(int i = 0; i < MISS_NB; ++i)
 			if (this->missile[i] == NULL)
 			{
-				this->missile[i] = new Missile(this->x, this->y - 2);
-				this->setShot(actual);
+				this->missile[i] = new Missile(x, y);
 				return;
 			}
+}
+
+void		Player::shoot() {
+	std::clock_t actual = clock();
+	double time = ((actual - this->shot) / (float)1000);
+	if (time > 200) {
+		if (weapon_bonus > actual)
+		{
+			addMissile(this->x - 1, this->y - 1);
+			addMissile(this->x, this->y - 2);
+			addMissile(this->x + 1, this->y - 1);
+		}
+		else
+		{
+			addMissile(this->x, this->y - 2);
+		}
+		this->setShot(actual);
 	}
 }
 

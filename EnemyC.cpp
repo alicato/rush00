@@ -6,7 +6,7 @@ EnemyC::EnemyC(void) : EnemyBase(10) {
 	for (int i = 0; i < MISS_NB;  i++)
 		this->missile[i] = NULL;
 	this->leftLimit = 8;
-	this->rightLimit = WIN_W - 20;
+	this->rightLimit = WIN_W - 10;
 	return;
 }
 

@@ -16,7 +16,8 @@ Window::Window(void) {
 	init_pair(3, COLOR_BLACK, COLOR_WHITE);
 	init_pair(4, COLOR_GREEN, COLOR_BLACK);
 	init_pair(5, COLOR_BLUE, COLOR_BLACK);
-	init_pair(6, COLOR_RED, COLOR_YELLOW);
+	init_pair(6, COLOR_WHITE, COLOR_RED);
+	
 	return;
 }
 

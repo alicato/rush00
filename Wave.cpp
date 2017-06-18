@@ -18,7 +18,11 @@ Wave::Wave(int a, int b, int c) : a(a), b(b), c(c) {
 		if (c != 0)
 			this->groupC = new EnemyC[c];
 		this->boss = NULL;
+		for (int i = 0; i < 10 ; i++) {
+		 	this->bonus[i] = NULL;
+		}
 	}
+	this->bonusTimer = randNum(2000,5000);
 	return;
 }
 
@@ -31,6 +35,11 @@ Wave::~Wave() {
 		delete [] groupB;
 	if (c > 0)
 		delete [] groupC;
+	for (int i = 0; i < 10; i++) {
+		if (this->bonus[i] != NULL) {
+			delete this->bonus[i];
+		}
+	}
 	return;
 }
 
@@ -86,6 +95,50 @@ bool		Wave::update(Player &player) {
 				this->groupC[i].collide(player);
 			}
 		}
+		if (ABonus *test = spawnBonus())
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				if (this->bonus[i] == NULL)
+				{
+					this->bonus[i] = test;
+					break;
+				}
+				if (i == 9)
+					delete test;
+			}
+		}
+		for (int i = 0; i < 10 ; i++) {
+			if ( this->bonus[i] != NULL ) {
+				if ( !this->bonus[i]->move(player) ) {
+					delete this->bonus[i];
+					this->bonus[i] = NULL;
+				} else {
+					this->bonus[i]->display();
+				}
+			}
+		}
 	}
 	return over;
+}
+
+
+ABonus		*Wave::spawnBonus() {
+	if ((std::clock() - this->lastBonus)/(float)1000 > this->bonusTimer) {
+		int rand = this->randNum(0, 1);
+		this->bonusTimer = randNum(2000,5000);
+		this->lastBonus = std::clock();
+		switch(rand){
+			case BONUS_LIFE: return new BonusLife();
+				break;
+			case BONUS_WEAPON: return new BonusWeapon();
+				break;	
+			default: return NULL;
+		}
+	}
+	return NULL;
+}
+
+int			Wave::randNum(int min, int max) {
+	return std::rand()%(max - min + 1) + min;
 }

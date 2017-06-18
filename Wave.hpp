@@ -5,6 +5,11 @@
 # include "EnemyB.hpp"
 # include "EnemyC.hpp"
 # include "Boss.hpp"
+# include "BonusLife.hpp"
+# include "BonusWeapon.hpp"
+
+# define BONUS_LIFE 0
+# define BONUS_WEAPON 1
 
 class	Wave {
 	
@@ -16,6 +21,11 @@ class	Wave {
 		EnemyB*		groupB;
 		EnemyC*		groupC;
 		Boss*		boss;
+		ABonus*		bonus[10];
+		int			bonusTimer;
+		ABonus* 	spawnBonus();
+		int			randNum(int min, int max);
+		double		lastBonus;
 
 	public:
 		Wave();
