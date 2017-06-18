@@ -28,10 +28,10 @@ void		EnemyBase::move() {
 	x += direction;
 	if (x < leftLimit || x > rightLimit)
 	{
+		x = (x < leftLimit) ? leftLimit : rightLimit;
 		y++;
 		direction = -direction;
-		x += direction;
 	}
-	if (y < 1 && y > -2)
+	if (y < 1 && y > -3)
 		y++;
 }
