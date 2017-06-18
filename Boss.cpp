@@ -4,7 +4,7 @@ void	Boss::setX(int x) { this->x = x; }
 void	Boss::setY(int y) { this->y = y; }
 
 Boss::Boss(void) {
-	this->hp = 100;
+	this->hp = 10;
 	this->x = WIN_W / 2;
 	this->y = 4;
 	this->left = false;
@@ -161,7 +161,7 @@ void			Boss::display() {
 
 void		Boss::collide(Player& player) {
 	for (int i = 0; i < MISS_NB * 2; i++)
-		if (this->missile[i] != 0 && ((abs(this->missile[i]->getX() - player.getX()) < 2 && this->missile[i]->getY() == player.getY()) || (abs(this->missile[i]->getY() - player.getY()) < 2 && this->missile[i]->getX() == player.getX()))) {
+		if (this->missile[i] != 0 && ((abs(this->missile[i]->getX() - player.getX()) < Player::width && this->missile[i]->getY() == player.getY()) || (abs(this->missile[i]->getY() - player.getY()) < 2 && this->missile[i]->getX() == player.getX()))) {
 			delete this->missile[i];
 			this->missile[i] = NULL;
 			player -= 1;

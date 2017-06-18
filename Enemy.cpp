@@ -77,7 +77,7 @@ void			Enemy::display() {
 }
 
 void		Enemy::collide(Player& player) {
-	if (this->missile != 0 && ((abs(this->missile->getX() - player.getX()) < 2 && this->missile->getY() == player.getY()) || (abs(this->missile->getY() - player.getY()) < 2 && this->missile->getX() == player.getX()))) {
+	if (this->missile != 0 && ((abs(this->missile->getX() - player.getX()) < Player::width && this->missile->getY() == player.getY()) || (abs(this->missile->getY() - player.getY()) < 2 && this->missile->getX() == player.getX()))) {
 		delete this->missile;
 		this->missile = NULL;
 		player -= 1;

@@ -82,7 +82,7 @@ void			EnemyB::display() {
 
 void		EnemyB::collide(Player& player) {
 	for (int i = 0; i < MISS_NB; i++)
-		if (this->missile[i] != 0 && ((abs(this->missile[i]->getX() - player.getX()) < 2 && this->missile[i]->getY() == player.getY()) || (abs(this->missile[i]->getY() - player.getY()) < 2 && this->missile[i]->getX() == player.getX()))) {
+		if (this->missile[i] != 0 && ((abs(this->missile[i]->getX() - player.getX()) < Player::width && this->missile[i]->getY() == player.getY()) || (abs(this->missile[i]->getY() - player.getY()) < 2 && this->missile[i]->getX() == player.getX()))) {
 			delete this->missile[i];
 			this->missile[i] = NULL;
 			player -= 1;

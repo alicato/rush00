@@ -2,7 +2,7 @@
 
 ABonus::ABonus( void ) {
 	this->y = 0;
-	this->x = std::rand()%WIN_W;
+	this->x = std::rand()%(WIN_W - 8) + 4;
 }
 
 ABonus::~ABonus( void ) {
@@ -26,7 +26,7 @@ bool	ABonus::move(Player & player) {
 			this->y += 1;
 			if (this->y >= WIN_H)
 				return false;
-			if (((abs(this->x - player.getX()) < 2 && abs(this->y - player.getY()) < 2))) {
+			if (((abs(this->x - player.getX()) < Player::width && abs(this->y - player.getY()) < 2))) {
 				this->action(player);
 				return false;
 			}

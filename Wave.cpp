@@ -18,9 +18,9 @@ Wave::Wave(int a, int b, int c) : a(a), b(b), c(c) {
 		if (c != 0)
 			this->groupC = new EnemyC[c];
 		this->boss = NULL;
-		for (int i = 0; i < 10 ; i++) {
-		 	this->bonus[i] = NULL;
-		}
+	}
+	for (int i = 0; i < 10 ; i++) {
+		 this->bonus[i] = NULL;
 	}
 	this->bonusTimer = randNum(2000,5000);
 	return;
@@ -29,8 +29,10 @@ Wave::Wave(int a, int b, int c) : a(a), b(b), c(c) {
 Wave::~Wave() {
 	if (a > 0)
 		delete [] groupA;
-	else
+	else {
 		delete boss;
+		return;
+	}
 	if (b > 0)
 		delete [] groupB;
 	if (c > 0)
@@ -55,12 +57,16 @@ bool		Wave::update(Player &player) {
 	int	i = -1;
 	bool	over = true;
 
-	if (this->boss != NULL && this->boss->getHp() > 0) {
-		over = false;
-		this->boss->move(player);
-		this->boss->shoot();
-		this->boss->display();
-		this->boss->collide(player);
+	if (this->boss != NULL) {
+		if (this->boss->getHp() > 0)
+		{
+			over = false;
+			this->boss->move(player);
+			this->boss->shoot();
+			this->boss->display();
+			this->boss->collide(player);
+		}
+		
 	}
 	else {
 		while (++i < this->a)
@@ -126,7 +132,7 @@ bool		Wave::update(Player &player) {
 ABonus		*Wave::spawnBonus() {
 	if ((std::clock() - this->lastBonus)/(float)1000 > this->bonusTimer) {
 		int rand = this->randNum(0, 1);
-		this->bonusTimer = randNum(2000,5000);
+		this->bonusTimer = randNum(5000,10000);
 		this->lastBonus = std::clock();
 		switch(rand){
 			case BONUS_LIFE: return new BonusLife();

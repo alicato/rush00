@@ -8,6 +8,8 @@ class Player : public Entity {
 	private:
 		void		addMissile(int x, int y);
 		double		weapon_bonus;
+		void		writePatern();
+		
 
 	public:
 		Player(void);
@@ -19,7 +21,7 @@ class Player : public Entity {
 		void		move(int c);
 		void		shoot();
 		void		addBonusTime();
-
+		static int	width;
 		Missile*	missile[MISS_NB];
 };
 
