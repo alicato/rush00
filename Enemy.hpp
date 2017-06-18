@@ -1,26 +1,19 @@
 #ifndef ENEMY_HPP
 # define ENEMY_HPP
 
-# include "Entity.hpp"
-# include "Missile.hpp"
-# include "Player.hpp"
+# include "EnemyBase.hpp"
 
-class Enemy : public Entity {
-
+class Enemy : public EnemyBase {
 	private:
-		bool		left;
-		Missile*	missile;
-
+		Missile *missile;
 	public:
 		Enemy(void);
 		~Enemy(void);
 		Enemy(Enemy const &src);
 		Enemy &operator=(Enemy const &src);
 
-		void	setX(int x);
-		void	setY(int y);
-		void	display();
 		void	move(Player& player);
+		void	display();
 		void	shoot();
 		void	collide(Player& player);
 };

@@ -1,14 +1,11 @@
 #ifndef ENEMYB_HPP
 # define ENEMYB_HPP
 
-# include "Entity.hpp"
-# include "Missile.hpp"
-# include "Player.hpp"
+# include "EnemyBase.hpp"
 
-class EnemyB : public Entity {
+class EnemyB : public EnemyBase {
 
 	private:
-		bool		left;
 		Missile*	missile[MISS_NB];
 
 	public:

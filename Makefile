@@ -1,6 +1,6 @@
 NAME = ft_retro
 
-SRC = Boss.cpp EnemyB.cpp EnemyC.cpp Missile.cpp Enemy.cpp Entity.cpp Player.cpp main.cpp Window.cpp Wave.cpp
+SRC = Boss.cpp EnemyBase.cpp EnemyB.cpp EnemyC.cpp Missile.cpp Enemy.cpp Entity.cpp Player.cpp main.cpp Window.cpp Wave.cpp
 
 SRCO = $(SRC:.cpp=.o)
 
