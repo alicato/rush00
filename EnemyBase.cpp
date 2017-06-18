@@ -32,6 +32,6 @@ void		EnemyBase::move() {
 		direction = -direction;
 		x += direction;
 	}
-	if (y < 0 && y > -3)
+	if (y < 1 && y > -2)
 		y++;
 }

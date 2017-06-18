@@ -1,18 +1,12 @@
 #include "EnemyB.hpp"
 
-void	EnemyB::setX(int x) { this->x = x; }
-void	EnemyB::setY(int y) { this->y = y; }
-
-EnemyB::EnemyB(void) {
-	this->hp = 5;
-	this->x = rand() % (WIN_W - 5) + 5;
+EnemyB::EnemyB(void) : EnemyBase(5) {
+	this->x = rand() % (WIN_W - 6) + 3;
 	this->y = -(rand() % 5 + 3);
-	if (this->x % 2 == 0)
-		this->left = true;
-	else
-		this->left = false;
 	for (int i = 0; i < MISS_NB; i++)
 		this->missile[i] = NULL;
+	this->leftLimit = 5;
+	this->rightLimit = WIN_W - 5;
 	return;
 }
 
@@ -47,20 +41,7 @@ void		EnemyB::move(Player & player) {
 	std::clock_t actual = clock();
 	double time = ((actual - this->time) / (float)1000000) * 1000;
 	if (time > 50) {
-		if (this->left)
-			this->x -= 1;
-		else
-			this->x += 1;
-		if (this->x <= 5)
-		{
-			this->y += 1;
-			this->left = false;
-		}
-		if (this->x >= WIN_W - 5)
-		{
-			this->left = true;
-			this->y += 1;
-		}
+		EnemyBase::move();
 		for (int i = 0; i < MISS_NB;++i)
 			if (player.missile[i] != NULL && ((abs(this->x - player.missile[i]->getX()) < 4 && abs(this->y - player.missile[i]->getY()) < 4))) {
 				delete player.missile[i];

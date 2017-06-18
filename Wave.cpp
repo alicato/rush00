@@ -8,7 +8,7 @@ Wave::Wave() { return; }
 Wave::Wave(Wave const & src) { *this = src; }
 
 Wave::Wave(int a, int b, int c) : a(a), b(b), c(c) {
-	if (a == 0 && b == 0)
+	if (a == 0 && b == 0 && c == 0)
 		this->boss = new Boss;
 	else {
 		if (a != 0)

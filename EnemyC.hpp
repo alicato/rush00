@@ -1,14 +1,11 @@
 #ifndef ENEMYC_HPP
 # define ENEMYC_HPP
 
-# include "Entity.hpp"
-# include "Missile.hpp"
-# include "Player.hpp"
+# include "EnemyBase.hpp"
 
-class EnemyC : public Entity {
+class EnemyC : public EnemyBase {
 
 	private:
-		bool		left;
 		Missile*	missile[MISS_NB];
 		
 	public:
@@ -17,8 +14,6 @@ class EnemyC : public Entity {
 		EnemyC(EnemyC const &src);
 		EnemyC &operator=(EnemyC const &src);
 
-		void	setX(int x);
-		void	setY(int y);
 		void	display();
 		void	move(Player& player);
 		void	shoot();
