@@ -3,6 +3,7 @@
 # define WIN_H 50
 
 Window::Window(void) {
+	setlocale(LC_ALL, "");
 	initscr();
 	start_color();
 	cbreak();

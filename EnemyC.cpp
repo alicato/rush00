@@ -12,7 +12,13 @@ EnemyC::EnemyC(void) : EnemyBase(10) {
 
 EnemyC::EnemyC(EnemyC const &src) { *this = src; }
 
-EnemyC::~EnemyC(void) { return; }
+EnemyC::~EnemyC(void) {
+	for(int i = 0; i < MISS_NB; ++i)
+		if (this->missile[i] != NULL)
+			delete this->missile[i];
+
+	return;
+}
 
 EnemyC &			EnemyC::operator=(EnemyC const &src) {
 	this->x = src.getX();
@@ -82,7 +88,7 @@ void			EnemyC::display() {
 					this->missile[i]->move(false);
 					this->missile[i]->setTime(actual);
 				}
-				this->missile[i]->display(5 ,"|");
+				this->missile[i]->display(5 , L"🔻");
 			}
 		}
 	}

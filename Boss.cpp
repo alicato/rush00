@@ -4,7 +4,7 @@ void	Boss::setX(int x) { this->x = x; }
 void	Boss::setY(int y) { this->y = y; }
 
 Boss::Boss(void) {
-	this->hp = 10;
+	this->hp = 100;
 	this->x = WIN_W / 2;
 	this->y = 4;
 	this->left = false;
@@ -18,7 +18,13 @@ Boss::Boss(void) {
 
 Boss::Boss(Boss const &src) { *this = src; }
 
-Boss::~Boss(void) { return; }
+Boss::~Boss(void) {
+	for(int i = 0; i < MISS_NB * 2; ++i)
+		if (this->missile[i] != NULL)
+			delete this->missile[i];
+	
+	return;
+}
 
 Boss &			Boss::operator=(Boss const &src) {
 	this->x = src.getX();
@@ -153,7 +159,7 @@ void			Boss::display() {
 					this->missile[i]->move(false);
 					this->missile[i]->setTime(actual);
 				}
-				this->missile[i]->display(5 ,"|");
+				this->missile[i]->display(5, "|");
 			}
 		}
 	}

@@ -11,7 +11,11 @@ Enemy::Enemy(void) : EnemyBase(2) {
 
 Enemy::Enemy(Enemy const &src) { *this = src; }
 
-Enemy::~Enemy(void) { return; }
+Enemy::~Enemy(void) {
+	if (missile)
+		delete missile;
+	return;
+}
 
 Enemy &			Enemy::operator=(Enemy const &src) {
 	this->x = src.getX();
@@ -70,7 +74,7 @@ void			Enemy::display() {
 				this->missile->move(false);
 				this->missile->setTime(actual);
 			}
-			this->missile->display(5, "o");
+			this->missile->display(5, "|");
 		}
 	}
 

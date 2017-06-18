@@ -4,7 +4,7 @@ SRC = Boss.cpp EnemyBase.cpp EnemyB.cpp EnemyC.cpp Missile.cpp Enemy.cpp Entity.
 
 SRCO = $(SRC:.cpp=.o)
 
-CC = c++ -Wall -Werror -Wextra
+CC = clang++ -Wall -Werror -Wextra
 
 all: $(NAME)
 

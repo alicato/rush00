@@ -15,7 +15,7 @@ Player::Player(void) {
 Player::Player(Player const &src) { *this = src; }
 
 Player::~Player(void) {
-	for(int i = 0; i < MISS_NB; ++i)
+	for(int i = 0; i < MISS_NB * 2; ++i)
 		if (this->missile[i] != NULL)
 			delete this->missile[i];
 	return;
@@ -49,7 +49,7 @@ void			Player::display() {
 					this->missile[i]->move(true);
 					this->missile[i]->setTime(actual);
 				}
-				this->missile[i]->display(4, "|");
+				this->missile[i]->display(4);
 			}
 		}
 	}
@@ -57,13 +57,13 @@ void			Player::display() {
 
 void		Player::writePatern()
 {
-	mvwprintw(stdscr, this->y - 1, this->x, "A");
-	mvwprintw(stdscr, this->y, this->x - 1, "/=\\");
-	mvwprintw(stdscr, this->y + 1, this->x, "\"");
+	mvwprintw(stdscr, this->y - 1, this->x, "%S", L"▲");
+	mvwprintw(stdscr, this->y, this->x - 1, "%S", L"/=\\");
+	mvwprintw(stdscr, this->y + 1, this->x, "%S", L"\"");
 	Player::width = 2;
 	std::clock_t actual = clock();
 	if (weapon_bonus > actual) {
-		mvwprintw(stdscr, this->y, this->x - 3, "|_/=\\_|");
+		mvwprintw(stdscr, this->y, this->x - 3, "%S", L"⟟_(❂)_⟟");
 		Player::width = 4;
 	}
 
@@ -78,12 +78,12 @@ void		Player::addBonusTime()
 		weapon_bonus += 5000000;
 }
 
-void		Player::addMissile(int x, int y)
+void		Player::addMissile(int x, int y, std::wstring s)
 {
 	for(int i = 0; i < MISS_NB; ++i)
 			if (this->missile[i] == NULL)
 			{
-				this->missile[i] = new Missile(x, y);
+				this->missile[i] = new Missile(x, y, s);
 				return;
 			}
 }
@@ -94,14 +94,10 @@ void		Player::shoot() {
 	if (time > 200) {
 		if (weapon_bonus > actual)
 		{
-			addMissile(this->x - 3, this->y - 1);
-			addMissile(this->x, this->y - 2);
-			addMissile(this->x + 3, this->y - 1);
+			addMissile(this->x - 3, this->y - 1, L"○");
+			addMissile(this->x + 3, this->y - 1, L"○");
 		}
-		else
-		{
-			addMissile(this->x, this->y - 2);
-		}
+		addMissile(this->x, this->y - 2, L"✧");
 		this->setShot(actual);
 	}
 }

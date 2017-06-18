@@ -6,7 +6,7 @@
 
 class Player : public Entity {
 	private:
-		void		addMissile(int x, int y);
+		void		addMissile(int x, int y, std::wstring s);
 		double		weapon_bonus;
 		void		writePatern();
 		
@@ -22,7 +22,7 @@ class Player : public Entity {
 		void		shoot();
 		void		addBonusTime();
 		static int	width;
-		Missile*	missile[MISS_NB];
+		Missile*	missile[MISS_NB*2];
 };
 
 #endif

@@ -3,7 +3,7 @@
 int main(void) {
 	Window	win;
 	Player*	player = new Player();
-	Wave*	wave = new Wave(1, 0, 0);
+	Wave*	wave = new Wave(7, 0, 0);
 	int 	loop = true;
 	int		w = 0;
 	int		c;
@@ -11,7 +11,6 @@ int main(void) {
 	srand(time(0));
 	loop = win.menu();
 	while (loop) {
-
 		c = getch();
 		erase();
 		win.stars();
