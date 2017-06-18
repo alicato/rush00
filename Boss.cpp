@@ -4,7 +4,7 @@ void	Boss::setX(int x) { this->x = x; }
 void	Boss::setY(int y) { this->y = y; }
 
 Boss::Boss(void) {
-	this->hp = 10;
+	this->hp = 100;
 	this->x = WIN_W / 2;
 	this->y = 4;
 	this->left = false;
