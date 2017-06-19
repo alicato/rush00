@@ -94,10 +94,10 @@ void		Player::shoot() {
 	if (time > 200) {
 		if (weapon_bonus > actual)
 		{
-			addMissile(this->x - 3, this->y - 1, L"○");
-			addMissile(this->x + 3, this->y - 1, L"○");
+			addMissile(this->x - 3, this->y - 1, L"|");
+			addMissile(this->x + 3, this->y - 1, L"|");
 		}
-		addMissile(this->x, this->y - 2, L"✧");
+		addMissile(this->x, this->y - 2, L"|");
 		this->setShot(actual);
 	}
 }
