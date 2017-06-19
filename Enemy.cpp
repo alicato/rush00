@@ -74,7 +74,7 @@ void			Enemy::display() {
 				this->missile->move(false);
 				this->missile->setTime(actual);
 			}
-			this->missile->display(5, "|");
+			this->missile->display(5, "o");
 		}
 	}
 

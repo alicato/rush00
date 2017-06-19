@@ -80,7 +80,7 @@ void			EnemyB::display() {
 					this->missile[i]->move(false);
 					this->missile[i]->setTime(actual);
 				}
-				this->missile[i]->display(5, L"🔹");
+				this->missile[i]->display(5, L"*");
 			}
 		}
 	}

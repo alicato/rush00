@@ -57,13 +57,13 @@ void			Player::display() {
 
 void		Player::writePatern()
 {
-	mvwprintw(stdscr, this->y - 1, this->x, "%S", L"▲");
+	mvwprintw(stdscr, this->y - 1, this->x, "%S", L"A");
 	mvwprintw(stdscr, this->y, this->x - 1, "%S", L"/=\\");
 	mvwprintw(stdscr, this->y + 1, this->x, "%S", L"\"");
 	Player::width = 2;
 	std::clock_t actual = clock();
 	if (weapon_bonus > actual) {
-		mvwprintw(stdscr, this->y, this->x - 3, "%S", L"⟟_(❂)_⟟");
+		mvwprintw(stdscr, this->y, this->x - 3, "%S", L"I_(=)_I");
 		Player::width = 4;
 	}
 
